@@ -1,4 +1,4 @@
-package com.example.arnauddupeyrat.Animalis.Model;
+package com.example.arnauddupeyrat.Animalis.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,6 +21,12 @@ public class DateUtils {
         SimpleDateFormat formatter = new SimpleDateFormat(SQLWithoutMinute);
         String folderName = formatter.format(dateToTransform);
         return folderName;
+    }
+
+    public static String calculateAge (Date tempDate){
+        int actualYear = new Date().getYear();
+        int age = actualYear - tempDate.getYear();
+        return ""+ age;
     }
 
 }

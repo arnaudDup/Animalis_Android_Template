@@ -68,4 +68,8 @@ public class ViewControler {
         FragmentActivity.get().updateProfile();
     }
 
+    public void repaintFragment() {
+        FragmentActivity.get().repaintFragment();
+    }
+
 }

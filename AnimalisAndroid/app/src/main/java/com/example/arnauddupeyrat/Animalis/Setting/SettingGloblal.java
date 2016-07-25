@@ -34,4 +34,8 @@ public class SettingGloblal {
     public static final String REMOVE_ACCOUNT = "removeAccount" ;
     public static final String ASK_FOR_PERMISSION = "askForPermission";
 
+
+    /*********************** Controler Message ***************/
+    public static final String REPAINT_FRAGMENT = "repaintFragment";
+
 }

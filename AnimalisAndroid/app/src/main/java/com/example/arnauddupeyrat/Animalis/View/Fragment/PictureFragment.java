@@ -20,6 +20,7 @@ import java.util.HashMap;
 import com.example.arnauddupeyrat.Animalis.Controler.Controler ;
 import com.example.arnauddupeyrat.Animalis.Setting.SettingGloblal;
 import com.example.arnauddupeyrat.Animalis.Utils.BitmapDownloaderTask;
+import com.example.arnauddupeyrat.Animalis.Utils.DateUtils;
 
 
 /**
@@ -60,11 +61,17 @@ public class PictureFragment extends Fragment {
         // Update presentation of the fragment.
         TextView presentationText = (TextView) temp.findViewById(R.id.presentation);
         StringBuilder stringTemp = new StringBuilder();
+
+        // TODO check if the date isn't null. -> in this cas nothing should be displayed.
         stringTemp.append(controler.getModele().getProfile().getFirstname())
                   .append(" ")
                   .append(controler.getModele().getProfile().getLastname())
                   .append("\n")
-                  .append(controler.getModele().getProfile().getDescrition());
+                  .append(controler.getModele().getProfile().getDescrition())
+                  .append("\n")
+                  .append(DateUtils.calculateAge(controler.getModele().getProfile().getBirthdate()))
+                  .append(" years");
+
         presentationText.setText(stringTemp);
 
 

@@ -153,14 +153,14 @@ public class Controler {
                     public void onSucess(Map<String,Object> mapper) {
                         viewControler.toViewPager();
                         viewControler.updateProfil();
-                        Log.i("com.example.arnauddupeyrat.Animalis.Controler Call","Account associated with " + getModele().getProfile().getIdApiConnection() + " is updated properly");
+                        Log.i("Controler Call","Account associated with " + getModele().getProfile().getIdApiConnection() + " is updated properly");
 
                     }
 
                     @Override
                     public void onFailed(int status_code, String message, String url) {
                         // TODO afficher la fenetre comme quoi le profil n'a pas pu se mettre a jour
-                        Log.i("com.example.arnauddupeyrat.Animalis.Controler Call","Account associated with " + getModele().getProfile().getIdApiConnection() + " is not updated properly");
+                        Log.i("Controler Call","Account associated with " + getModele().getProfile().getIdApiConnection() + " is not updated properly");
                     }
                 });
 
@@ -190,7 +190,7 @@ public class Controler {
 
             // Send a request in order to delete user in database.
             protected Void doInBackground(Void... params) {
-                    Log.i("com.example.arnauddupeyrat.Animalis.Controler Call","Try to remove account " + getModele().getProfile().getIdApiConnection());
+                    Log.i("Controler Call","Try to remove account " + getModele().getProfile().getIdApiConnection());
 
                     ServiceHandler serviceHandler = new ServiceHandler();
                     serviceHandler.setOnServerRequestCompleteListener(new OnServerRequestComplete() {
@@ -198,13 +198,13 @@ public class Controler {
                         public void onSucess(Map<String,Object> mapper) {
                             viewControler.changeActivtyToMainActivity();
                             viewControler.displayDialogRemoveAccount();
-                            Log.i("com.example.arnauddupeyrat.Animalis.Controler Call","Account associated with " + getModele().getProfile().getIdApiConnection() + " is removed properly");
+                            Log.i("Controler Call","Account associated with " + getModele().getProfile().getIdApiConnection() + " is removed properly");
 
                         }
 
                         @Override
                         public void onFailed(int status_code, String message, String url) {
-                            Log.i("com.example.arnauddupeyrat.Animalis.Controler Call","Account associated with " + getModele().getProfile().getIdApiConnection() + " is not removed properly");
+                            Log.i("Controler Call","Account associated with " + getModele().getProfile().getIdApiConnection() + " is not removed properly");
                         }
                     });
 
@@ -214,6 +214,21 @@ public class Controler {
                 return null;
             }
         });
+
+        // shifting between fragment.
+        HashMap<String,Object> event8 = new HashMap<String,Object> ();
+        event8.put("Event", SettingGloblal.REPAINT_FRAGMENT);
+        final Transition t8 = new Transition(e2,event8);
+        t8.setAction(new IAction(){
+
+
+            protected Void doInBackground(Void... params) {
+                Log.d("DEBUG", "Controler call to repaint fragment.");
+                viewControler.repaintFragment();
+                return null;
+            }
+        });
+
 
         // Etat e1
         e1.ajouterTransition(t1);
@@ -225,6 +240,7 @@ public class Controler {
         e2.ajouterTransition(t5);
         e2.ajouterTransition(t6);
         e2.ajouterTransition(t7);
+        e2.ajouterTransition(t8);
 
         automate.setEtatInitial(e1);
         automate.demarrer();

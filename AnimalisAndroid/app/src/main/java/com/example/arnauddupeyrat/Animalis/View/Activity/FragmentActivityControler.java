@@ -18,6 +18,7 @@ import com.example.arnauddupeyrat.Animalis.View.Fragment.PictureFragment;
 import com.example.arnauddupeyrat.Animalis.View.Fragment.ResearchFragment;
 import com.example.arnauddupeyrat.Animalis.View.Fragment.ProfileConfigurationFragment;
 import com.example.arnauddupeyrat.Animalis.R;
+import com.example.arnauddupeyrat.Animalis.Utils.FragmentAdvanceStatePagerAdapter;
 
 import java.lang.ref.WeakReference;
 
@@ -101,6 +102,10 @@ public class FragmentActivityControler extends FragmentActivity {
         mPager.setCurrentItem(mPager.getCurrentItem()+1,true);
     }
 
+    public void repaintFragment(){
+        mAdapter.notifyDataSetChanged();
+    }
+
     /**
      * Create Fragment
      * @param fragment
@@ -139,36 +144,30 @@ public class FragmentActivityControler extends FragmentActivity {
         ft.commit();
     }
 
-    public static class MyAdapter extends FragmentStatePagerAdapter {
+
+
+     public static class MyAdapter extends FragmentAdvanceStatePagerAdapter {
+
+        protected  FragmentManager fragmentmanager;
         public MyAdapter(FragmentManager fm) {
             super(fm);
+            fragmentmanager = fm;
         }
 
 
-        @Override
-        public int getItemPosition(Object object) {
-            return POSITION_NONE;
-        }
+         @Override
+         public int getCount() {
+             return NUM_ITEMS;
+         }
 
+         @Override
+         public void updateFragmentItem(int position, Fragment fragment){
+             fragment.onResume();
 
-        @Override
-        public int getCount() {
-            return NUM_ITEMS;
-        }
-
-        @Override
-        public void setPrimaryItem(ViewGroup container, int position, Object object) {
-            super.setPrimaryItem(container, position, object);
-        }
+         }
 
         @Override
-        public CharSequence getPageTitle(int position) {
-            return "Page " + position;
-        }
-
-
-        @Override
-        public Fragment getItem(int position) {
+        public Fragment getFragmentItem(int position) {
 
             Log.d("position", "" + position);
             switch (position) {
