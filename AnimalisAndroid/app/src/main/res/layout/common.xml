@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/shaperound"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:radius="100dip" >
+
+        <ImageButton
+            android:id="@+id/rightButtonToolBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:scaleType="fitStart"
+            android:background="#0000"
+            android:padding="0dp"
+            android:layout_marginRight="10dp"
+            />
+
+        <ImageView
+            android:id="@+id/ImageViewToolBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="0dp"
+            android:src="@drawable/logo_icon"
+            android:background="#0000"/>
+
+
+        <ImageButton
+            android:id="@+id/leftButtonToolBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:scaleType="fitStart"
+            android:background="#0000"
+            android:padding="0dp"/>
+
+    </android.support.v7.widget.Toolbar>
+</LinearLayout>

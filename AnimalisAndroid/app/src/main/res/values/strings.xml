@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Animalis</string>
+    <string name="error"> Problem server \nTry again thanks for your comprehension</string>
+    <string name="pressedBackButton"> Impossible to do that \nTry logout by the button in the application</string>
+    <string name="MessageError">OK</string>
+    <string name="removeAccountMessage"> We are going to remove your Animalis Account, \n All your animalis data will be lost \n Are you sure to continue ?</string>
+    <string name="action_settings">Settings</string>
+    <string name="facebook_app_id">116592382096476</string>
+    <string name="removeAccount">"removeAccount"</string>
+</resources>

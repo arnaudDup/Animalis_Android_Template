@@ -1,0 +1,20 @@
+
+//**********************Creation table************************/
+CREATE TABLE UserTable
+(
+    id  SERIAL PRIMARY KEY,
+    idApiConnection INT NOT NULL,
+    fullname VARCHAR(255),
+    lastname VARCHAR(100),
+    firstname VarChar(100),
+    email VARCHAR(255),
+    birthdate DATE,
+    profilePicture VARCHAR(1000),
+    CoverPicture VARCHAR(1000)
+);
+
+
+//********************** ajout dans la base de donnes *******/
+insert into usertable (idapiconnection,fullname,lastname,firstname,email,birthdate,profilepicture,coverpicture) values(651651,'tat','tat','tat','tat','2016/1/1','tat','tat');
+
+

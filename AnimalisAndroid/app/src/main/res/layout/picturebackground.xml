@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        layout= "@layout/common" />
+
+    <ImageView
+        android:id="@+id/backgroundPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:gravity="center"
+        android:id="@+id/presentation"
+        android:layout_gravity="center_horizontal" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="25px"
+        android:background="#FFFF" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="5px"
+        android:background="#FF909090" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="10px"
+        android:background="#FFFF" />
+
+    <Button
+        android:id="@+id/configuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set up your profile"
+        android:background="@drawable/shaperound"
+        android:elevation="4dp"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="10px"
+        android:background="#FFFF" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="5px"
+        android:background="#FF909090" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="10px"
+        android:background="#FFFF" />
+
+    <Button
+        android:id="@+id/logOutApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log out of facebook"
+        android:background="@drawable/shaperound"
+        android:elevation="4dp"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="10px"
+        android:background="#FFFF" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="5px"
+        android:background="#FF909090" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="10px"
+        android:background="#FFFF" />
+
+    <Button
+        android:id="@+id/suppressAcount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Suppress your account :("
+        android:background="@drawable/shaperound"
+        android:elevation="4dp"/>
+
+
+</LinearLayout>
