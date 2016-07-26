@@ -7,6 +7,7 @@ import com.example.arnauddupeyrat.Animalis.R;
 import java.util.HashMap;
 import java.util.Map;
 
+
 import com.example.arnauddupeyrat.Animalis.Controler.Automate.Automate;
 import com.example.arnauddupeyrat.Animalis.Controler.Automate.Etat;
 import com.example.arnauddupeyrat.Animalis.Controler.Automate.IAction;
@@ -16,6 +17,7 @@ import com.example.arnauddupeyrat.Animalis.Model.Model;
 import com.example.arnauddupeyrat.Animalis.Setting.SettingGloblal;
 import com.example.arnauddupeyrat.Animalis.WebRequest.OnServerRequestComplete;
 import com.example.arnauddupeyrat.Animalis.WebRequest.ServiceHandler;
+
 
 public class Controler {
 
@@ -40,12 +42,14 @@ public class Controler {
      */
     public void considererEvent(HashMap<String, Object> event)
     {
+
         viewControler.updateView();
         String typeEvent = (String)event.get("Event");
-        System.out.println("Consideration de :"+typeEvent);
+        Log.i(Controler.class.getName(),"considererEvent(), traitement de l'evenement"+typeEvent);
+        Log.i(Controler.class.getName(),"considererEvent(), curent state"+automate.getEtatCourant().toString());
 
         if(event == null) {
-            System.out.println("Evenement null");
+            Log.i(Controler.class.getName(),"considererEvent(),the name of the next transition is null");
             return;
         }
         else
@@ -55,17 +59,16 @@ public class Controler {
 
     public void initAutomate()
     {
+        Log.i(Controler.class.getName(),"initAutomate(), Initiate the automaton");
         if(isAlreadyinitiate){
            return;
         }
         this.isAlreadyinitiate = true;
-        System.out.print("Initialisation de l'automate.");
         automate = new Automate();
 
-        // On dÔøΩfini des etats
+
         Etat e1 = automate.ajouterEtat("PageAccueil");
         Etat e2 = automate.ajouterEtat("Profil");
-
 
         // Try to connect with facebook
         HashMap<String,Object> event1 = new HashMap<String,Object> ();
@@ -76,7 +79,7 @@ public class Controler {
             private HashMap<String,Object> eventRecu;
             protected Void doInBackground(Void... params) {
 
-                Log.d("DEBUG", "appel du controleur Pour changer d'activites.");
+                Log.i(Controler.class.getName(),"Controler Call(),change Activity go on core Activity");
                 eventRecu = t1.getEventRecu();
                 model.setAccesToken((String)eventRecu.get("AccessToken"));
                 viewControler.changeActivtyToPrimaryActicvity();
@@ -93,7 +96,7 @@ public class Controler {
             private HashMap<String,Object> eventRecu;
             protected Void doInBackground(Void... params) {
 
-                Log.d("DEBUG", "appel du controleur Pour changer d'activites.");
+                Log.i(Controler.class.getName(),"Controler Call(),change Activity, return on connexion activity");
                 eventRecu = t2.getEventRecu();
                 viewControler.changeActivtyToMainActivity() ;
                 return null;
@@ -109,7 +112,7 @@ public class Controler {
             private HashMap<String,Object> eventRecu;
             protected Void doInBackground(Void... params) {
 
-                Log.d("DEBUG", "appel du controleur Pour changer de fragments.");
+                Log.i(Controler.class.getName(),"Controler Call(), change fragment oon viewPager");
                 eventRecu = t3.getEventRecu();
                 if (eventRecu.get("Action").equals(SettingGloblal.LEFT_FRAGMENT)) {
                     viewControler.changeFragmentToLeft();
@@ -130,7 +133,7 @@ public class Controler {
             private HashMap<String,Object> eventRecu;
             protected Void doInBackground(Void... params) {
 
-                Log.d("DEBUG", "appel du controleur Pour changer de fragments.");
+                Log.i(Controler.class.getName(),"Controler Call(), change fragment to editing profile");
                 eventRecu = t4.getEventRecu();
                 viewControler.toProfileConfiguration();
                 return null;
@@ -145,7 +148,7 @@ public class Controler {
             private HashMap<String,Object> eventRecu = t5.getEventRecu();
             protected Void doInBackground(Void... params) {
 
-                Log.d("DEBUG", "appel du controleur Pour changer de fragments.");
+                Log.i(Controler.class.getName(),"Controler Call(), try to update profile, after editing");
 
                 ServiceHandler serviceHandler = new ServiceHandler();
                 serviceHandler.setOnServerRequestCompleteListener(new OnServerRequestComplete() {
@@ -153,14 +156,14 @@ public class Controler {
                     public void onSucess(Map<String,Object> mapper) {
                         viewControler.toViewPager();
                         viewControler.updateProfil();
-                        Log.i("Controler Call","Account associated with " + getModele().getProfile().getIdApiConnection() + " is updated properly");
+                        Log.i(Controler.class.getName(),"Controler Call(), update profile success");
 
                     }
 
                     @Override
                     public void onFailed(int status_code, String message, String url) {
                         // TODO afficher la fenetre comme quoi le profil n'a pas pu se mettre a jour
-                        Log.i("Controler Call","Account associated with " + getModele().getProfile().getIdApiConnection() + " is not updated properly");
+                        Log.i(Controler.class.getName(),"Controler Call(), update profile fail");
                     }
                 });
 
@@ -177,6 +180,7 @@ public class Controler {
         t7.setAction(new IAction(){
 
             protected Void doInBackground(Void... params) {
+                Log.i(Controler.class.getName(),"Controler Call(), asking permission to remove account");
                 viewControler.askForConfirmation(R.string.removeAccountMessage,SettingGloblal.REMOVE_ACCOUNT);
                 return null;
             }
@@ -190,8 +194,8 @@ public class Controler {
 
             // Send a request in order to delete user in database.
             protected Void doInBackground(Void... params) {
-                    Log.i("Controler Call","Try to remove account " + getModele().getProfile().getIdApiConnection());
 
+                    Log.i(Controler.class.getName(),"Controler Call(), remove account");
                     ServiceHandler serviceHandler = new ServiceHandler();
                     serviceHandler.setOnServerRequestCompleteListener(new OnServerRequestComplete() {
                         @Override
@@ -221,9 +225,8 @@ public class Controler {
         final Transition t8 = new Transition(e2,event8);
         t8.setAction(new IAction(){
 
-
             protected Void doInBackground(Void... params) {
-                Log.d("DEBUG", "Controler call to repaint fragment.");
+                Log.i(Controler.class.getName(),"Controler Call(), update fragment Profile");
                 viewControler.repaintFragment();
                 return null;
             }
@@ -244,6 +247,8 @@ public class Controler {
 
         automate.setEtatInitial(e1);
         automate.demarrer();
+
+        Log.i(Controler.class.getName(),"initAutomate(), List of all possible state "+automate.getEtats().toString());
 
     }
 

@@ -33,8 +33,7 @@ import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
+
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -44,33 +43,27 @@ import java.util.Map;
 
 
 import com.example.arnauddupeyrat.Animalis.Model.DTO.ProfileUserDto;
-import com.example.arnauddupeyrat.Animalis.Model.JacksonMapper;
 import com.example.arnauddupeyrat.Animalis.Setting.SettingGloblal;
 import com.example.arnauddupeyrat.Animalis.WebRequest.OnServerRequestComplete;
 import com.example.arnauddupeyrat.Animalis.WebRequest.ServiceHandler;
 
+
+
 public class MainActivity extends AppCompatActivity {
 
-    CallbackManager callbackManager;
-    LoginButton loginButton;
-    Controler controler;
+
+    private CallbackManager callbackManager;
+    private LoginButton loginButton;
+    private Controler controler;
     public static WeakReference<MainActivity> mainActivity;
-    JacksonMapper mapper = JacksonMapper.getInstance();
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
 
-    public MainActivity() {
-
-    }
+    public MainActivity() {}
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("Envoi du post","YOLO");
+        Log.i(MainActivity.class.getName()," onCreate() display the connexion frame");
         super.onCreate(savedInstanceState);
         mainActivity = new  WeakReference<MainActivity> (this);
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -79,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if (Profile.getCurrentProfile() != null) {
+            Log.i(MainActivity.class.getName()," onCreate() the user is already know, try to get information...");
             SpinnerFragment spinnerFragment = new SpinnerFragment();
             SpinnerWaitingOnCall(spinnerFragment);
             sendPost(AccessToken.getCurrentAccessToken().getToken(),Profile.getCurrentProfile().getId(),SettingGloblal.NOUVELADHERENTS);
@@ -98,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(LoginResult loginResult) {
+                Log.i(MainActivity.class.getName()," onCreate() successful connexion at facebook");
                 SpinnerFragment spinnerFragment = new SpinnerFragment();
                 SpinnerWaitingOnCall(spinnerFragment);
                 if (Profile.getCurrentProfile() == null) {
@@ -119,11 +114,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancel() {
+                Log.i(MainActivity.class.getName()," onCreate() cancel connexion");
                 // TODO afficher popup pour recommencer la connexion.
             }
 
             @Override
             public void onError(FacebookException exception) {
+                Log.i(MainActivity.class.getName()," onCreate() connexion fail");
                 // TODO affiche popu pareil que celle du dessus.
             }
         });
@@ -142,9 +139,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -183,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
         permissions.add("email");
         permissions.add("user_birthday");
         permissions.add("user_about_me");
+        Log.d(MainActivity.class.getName()," addPermissions() ask for permission"+permissions.toString());
         this.loginButton.setReadPermissions(permissions);
     }
 
@@ -193,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft =getSupportFragmentManager().beginTransaction();
         ft.add(R.id.SpinerWaiting, fragment, "Mise en place du nouveau spinner");
         ft.commit();
-        Log.d("DEBUG ", "Mise en place du spinner d'attente");
+        Log.d(MainActivity.class.getName()," SpinnerWaitingOnCall() setting up spinner fragment");
     }
 
      public void removeSpinner() {
@@ -202,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
          FragmentTransaction ft = fm.beginTransaction();
          ft.remove(fragment);
          ft.commit();
+         Log.d(MainActivity.class.getName()," removeSpinner() remove spinner fragment");
     }
     public void showDilaog(int StringToDisplay) {
 
@@ -210,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
         args.putInt(SettingGloblal.MESSAGEERROR,StringToDisplay);
         dialog.setArguments(args);
         dialog.show(getSupportFragmentManager(),"ErrorConnexion");
+        Log.d(MainActivity.class.getName(),", showDilaog() setting up spinner Dialog");
     }
 
     private void sendPost(String AccesToken, String idFacebook, int nouvelAdherent) {
@@ -226,10 +223,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSucess(Map<String,Object> mapper) {
-                // TODO modifier le resultat de la requetes pour que celui-ci concondent avec les données.
-                Log.d("sendPost()","get or create a new user of the application"+ mapper.get(SettingGloblal.RESPONSE));
+
+
                 ProfileUserDto user = (ProfileUserDto) mapper.get(SettingGloblal.RESPONSE);
-                Log.d("sendPost()","AFFICHAGE PROFILE"+user.toString());
+                Log.i(MainActivity.class.getName(),"sendPost() the server request sucess, user "+ user.getIdApiConnection());
+                Log.i(MainActivity.class.getName(),"sendPost() affichage du profile "+ user.getIdApiConnection());
 
                 controler.getModele().setProfile(user);
 
@@ -244,6 +242,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailed(int status_code, String message, String url) {
+                Log.i(MainActivity.class.getName(),"sendPost() the server request fail, impossible to connect the user");
                 logOutFace();
                 removeSpinner();
                 showDilaog(R.string.error);
@@ -269,6 +268,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logOutFace() {
+        Log.i(MainActivity.class.getName()," logOutFace() Deconnexion de facebook");
         LoginManager.getInstance().logOut();
     }
 

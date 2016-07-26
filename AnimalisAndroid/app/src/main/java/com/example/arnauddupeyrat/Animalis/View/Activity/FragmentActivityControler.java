@@ -34,11 +34,12 @@ public class FragmentActivityControler extends FragmentActivity {
     private MyAdapter mAdapter;
     private ViewPager mPager;
     private static WeakReference<FragmentActivityControler> fragmentControlerActivity;
-    boolean mShowingBack;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Log.i(FragmentActivityControler.class.getName()," onCreate() display the connexion frame");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.frament_pager);
 
@@ -93,12 +94,12 @@ public class FragmentActivityControler extends FragmentActivity {
     }
 
     public void changeFragmentToLeft(){
-        Log.d("Debug","Appel du controleur pour changer la frame");
+        Log.i(FragmentActivityControler.class.getName()," changeFragmentToLeft() change for the left fragment");
         mPager.setCurrentItem(mPager.getCurrentItem()-1,true);
     }
 
     public void changeFragmentToRigth(){
-        Log.d("Debug","Appel du controleur pour changer la frame");
+        Log.i(FragmentActivityControler.class.getName()," changeFragmentToLeft() change for the right fragment");
         mPager.setCurrentItem(mPager.getCurrentItem()+1,true);
     }
 
@@ -113,6 +114,7 @@ public class FragmentActivityControler extends FragmentActivity {
     // Put the fragmlent on the dinamic way.
     public void toProfileConfiguration (Fragment fragment) {
 
+        Log.i(FragmentActivityControler.class.getName()," toProfileConfiguration() edit the profile");
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(
                 R.anim.card_flip_right_in,
@@ -169,7 +171,7 @@ public class FragmentActivityControler extends FragmentActivity {
         @Override
         public Fragment getFragmentItem(int position) {
 
-            Log.d("position", "" + position);
+            Log.d(FragmentActivityControler.class.getName()," getFragmentItem() get fragmentBy position ");
             switch (position) {
                 case 0:
                     return new CommunityFragment();

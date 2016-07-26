@@ -1,5 +1,7 @@
 package com.example.arnauddupeyrat.Animalis.Controler.Automate;
 
+import android.util.Log;
+
 import java.util.HashMap;
 
 public class   Transition {
@@ -22,7 +24,7 @@ public class   Transition {
 	
 	public boolean predicatRespecte(HashMap<String,Object> eventRecu)
 	{
-		System.out.println("-"+event.get("Event"));
+		Log.d(Transition.class.getName(),"predicatRespecte(), see if the predicat is repected");
 		
 		if(eventRecu == null && event == null)
 			return true;
@@ -34,7 +36,7 @@ public class   Transition {
 	
 	public void faireAction()
 	{
-		System.out.println("[ -> +"+cible.getId()+"]");
+		Log.d(Transition.class.getName(),"faireAction(), do action on "+cible.getId());
 		action.doInBackground(null);
 	}
 	

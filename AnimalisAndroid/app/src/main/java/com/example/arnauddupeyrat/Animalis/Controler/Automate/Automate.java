@@ -1,12 +1,15 @@
 package com.example.arnauddupeyrat.Animalis.Controler.Automate;
 
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Automate {
-	
-	private ArrayList<Etat> etats;
+
+
+
 	private Etat etatCourant;
 	private Etat etatInit;
 	
@@ -47,10 +50,24 @@ public class Automate {
 		etatCourant = etatInit;
 	}
 
+	public ArrayList<Etat> getEtats() {
+		return etats;
+	}
+
+	private ArrayList<Etat> etats;
+
+	public Etat getEtatCourant() {
+		return etatCourant;
+	}
+
+	public Etat getEtatInit() {
+		return etatInit;
+	}
+
 	// iterate on event of the curent statee of the automate.
 	public void consider(HashMap<String,Object> event)
 	{
-		System.out.println("Automate : evenement recu " + event.get("Event")+" cur State : "+etatCourant.getLabel());
+		Log.i(Automate.class.getName(),"consider(), consider event "+ event.get("Event")+" cur State : "+etatCourant.getLabel());
 		
 		Transition t = etatCourant.rechercherTransition(event);
 		
@@ -59,6 +76,6 @@ public class Automate {
 		t.setEventRecu(event);
 		t.faireAction();
 		etatCourant = t.getCible();
-		System.out.println("{Etat"+etatCourant.getId()+" "+etatCourant.getLabel()+"}");
+		Log.d(Automate.class.getName(),"consider(), get target"+"{Etat"+etatCourant.getId()+" "+etatCourant.getLabel()+"}");
 	}
 }
