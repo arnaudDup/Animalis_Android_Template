@@ -9,7 +9,7 @@ The main objectives of the application are to use new technologies, to create an
 The application own two blanck fragment in order to add any content for your futur application, this is a kind of template for an android application.
 Moreoever this is an RestFull application using SpringAndroid for http request.
 
-![Schema Application](https://lh3.googleusercontent.com/-zqL5zImswRo/V5Za10XAEhI/AAAAAAAAAI8/6Ti2QKP1AYkWFwwMKtz-HiiMLBsOgDcEQCLcB/s0/Yolo.png "SchemaApplication.png")
+![enter image description here](https://lh3.googleusercontent.com/uhSEMSYzlichMdnMxhBpGy9OIqV1VVsaA93C_AwjcsjknG1Vpm3s5eB3E7O0UQa3OMKcXJ0a=s0 "diagrammeApplication.png")
 
 
 
