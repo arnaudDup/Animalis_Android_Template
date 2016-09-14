@@ -4,9 +4,9 @@ Welcome on board !
 ### Sysnopsis
 
 Hey everyBody :)
-The main objectives of the application are to use new technologies, to create an application alone (Database - Server - Android App), to enjoy produce project.
+The main objectives of the application are to use new technologies, to create an application alone (Database - Server - Android App) and to produce project.
 
-The application own two blanck fragment in order to add any content for your futur application, this is a kind of template for an android application.
+The application own two blanck fragments in order to add any content for your futur application, this is a kind of template for an android application.
 Moreoever this is an RestFull application using SpringAndroid for http request.
 
 ![enter image description here](https://lh3.googleusercontent.com/uhSEMSYzlichMdnMxhBpGy9OIqV1VVsaA93C_AwjcsjknG1Vpm3s5eB3E7O0UQa3OMKcXJ0a=s0 "diagrammeApplication.png")
@@ -59,7 +59,7 @@ Please free to contribute and add modifications but, don't touch the main branch
 NOTE: Be sure to merge the latest from "upstream" before making a pull request!
 
 
-### I currently work on:
+### I'am working on:
 
 - Handle exception in better way.
 - Use logger properly.
@@ -77,4 +77,4 @@ NOTE: Be sure to merge the latest from "upstream" before making a pull request!
 - FacebookAPI : https://github.com/facebook/facebook-android-sdk/blob/master/LICENSE.txt
 
 <HR>
-PS : I'am aware that my english isn't good enough, I curently work on it... If there are any mistakes don't hesitate to correct it but tell me where i'm wrong in order to improve faster.
+PS : I'am aware that my english isn't good enough, I curently work on it !
