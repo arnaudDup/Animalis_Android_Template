@@ -3,7 +3,7 @@ Welcome on board !
 
 ### Sysnopsis
 
-Hey everyBody :)
+Hey everybody :)
 The main objectives of the application are to use new technologies, to create an application alone (Database - Server - Android App) and to produce project.
 
 The application own two blanck fragments in order to add any content for your futur application, this is a kind of template for an android application.
